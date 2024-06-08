@@ -5,7 +5,7 @@ import ReactPlayer from "react-player";
 function DetailChapter() {
   const { state } = useLocation();
   const data = state?.data || {};
-
+console.log(data);
   return (
     <section className="flex flex-col gap-5 me-8">
       <h2 className="text-xl">My Chapter</h2>

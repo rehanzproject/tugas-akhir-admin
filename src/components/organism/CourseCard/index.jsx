@@ -41,7 +41,7 @@ function CourseCard({
       state: {
         createNewCourse: false,
         data: {
-          id,
+          course_id,
           name,
           description,
           price,

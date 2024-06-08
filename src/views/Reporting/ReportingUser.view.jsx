@@ -13,7 +13,6 @@ function ReportingUserView() {
 
   const { course_name } = useParams();
   const { state } = useLocation();
-console.log(data);
   return (
     <div>
       <h1 className="py-4 text-xl">{course_name}</h1>

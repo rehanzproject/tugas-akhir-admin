@@ -14,7 +14,7 @@ export const handleUpdateOrCreateChapter = async ({
     });
   }
 
-  await updateRequest(`/api/v1/admin/module?id=${data.id}`, {
+  await updateRequest(`/api/v1/admin/module?id=${id}`, {
     ...values,
     video: link_url,
   });
@@ -22,7 +22,7 @@ export const handleUpdateOrCreateChapter = async ({
 
 const handleUploadImage = async (res, file, uploadImage) => {
   await uploadImage(
-    `/api/v1/admin/course/thumbnail?id=${res?.data?.id || res}`,
+    `/api/v1/admin/upload/thumbnail?id=${res?.data?.course_id || res}`,
     file
   );
   
@@ -39,7 +39,6 @@ export const handleUpdateOrCreateCourse = async ({
 }) => {
   if (createNewCourse) {
     const res = await postRequest("/api/v1/admin/course", values);
-    console.log(res);
     await handleUploadImage(res, file, uploadImage);
   }
   await updateRequest(`/api/v1/admin/course?id=${id}`, values);

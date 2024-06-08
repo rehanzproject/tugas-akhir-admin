@@ -14,7 +14,6 @@ function ReportingSummary() {
     `/api/v1/admin/course/resumes?id=${detail_user}`,
     getRequest
   );
-  console.log(rawData);
   let finalData;
 
   const thumbnailCourseContent = useMemo(

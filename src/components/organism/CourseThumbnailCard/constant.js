@@ -7,7 +7,7 @@ export const getDetailCardInfoContent = (data) => {
   return [
     {
       title: "Responsible",
-      content: data?.create_by?.name || data?.create_by?.username,
+      content: data?.user?.name || data?.create_by?.username,
     },
     {
       title: "Last Update",
@@ -15,15 +15,15 @@ export const getDetailCardInfoContent = (data) => {
     },
     {
       title: "Members",
-      content: data?.member_count,
+      content: data?.member_count ?? 0,
     },
     {
       title: "Price",
       content: makeRupiahValue(data?.price || 100000),
     },
     {
-      title: "Level",
-      content: data?.level,
+      title: "Coupon",
+      content: data?.coupon ?? 'Belum ada kupon',
     },
   ];
 };

@@ -85,7 +85,7 @@ const useHTTP = () => {
   const uploadImage = async (url, value) => {
     try {
       const formData = new FormData();
-      formData.append("image", value);
+      formData.append("file", value);
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}${url}`,
         formData,

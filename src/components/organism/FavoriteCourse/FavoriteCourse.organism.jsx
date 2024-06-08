@@ -17,12 +17,12 @@ function FavoriteCourse({ dataCourses }) {
             <h2 className="font-bold text-lg">{item.name}</h2>
             <section className="rating rating-sm flex items-center">
               <RatingStars />
-              <p className="ps-2 text-sm">{item.rating}</p>
+              <p className="ps-2 text-sm">{item.rating ?? 0.0}</p>
             </section>
           </article>
 
           <section className="text-sm text-center py-1">
-            Attendees : {item.member_count}
+            Attendees : {item.member_count ?? 0}
           </section>
         </section>
       ))}

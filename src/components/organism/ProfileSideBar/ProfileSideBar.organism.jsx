@@ -3,11 +3,11 @@ import ProfileAccount from "../../molecules/ProfileAccount/ProfileAccount.molecu
 import EmailDash from "../../molecules/ProfileDashSidebar/EmailDash.molecule";
 import PhoneDash from "../../molecules/ProfileDashSidebar/PhoneDash.molecule";
 import DateOfBirthDash from "../../molecules/ProfileDashSidebar/DateOfBirth.molecule";
-import GenderDash from "../../molecules/ProfileDashSidebar/GenderDash.molecule";
 import WebsiteDash from "../../molecules/ProfileDashSidebar/WebsiteDash.molecule";
 import useSWR from "swr";
 import useHTTP from "../../../utils/hooks/useHTTP";
 import { transformDate } from "../../../utils/helper/helperMethod";
+import NIPDash from "../../molecules/ProfileDashSidebar/GenderDash.molecule";
 
 function ProfileSideBar() {
   const { getRequest } = useHTTP();
@@ -22,8 +22,8 @@ function ProfileSideBar() {
           <EmailDash text={data?.data?.email} />
           <PhoneDash phone={data?.data?.phone} />
           <DateOfBirthDash birthDate={date} />
-          <GenderDash gender={data?.gender === "M" && "Male"} />
-          <WebsiteDash website={"www.lms.co.id"} />
+          <NIPDash gender={data?.data?.nip} />
+          <WebsiteDash website={"www.asia.co.id"} />
         </div>
         <div className="border-t border-black">
           <Earning balance={data?.data?.balance} />
