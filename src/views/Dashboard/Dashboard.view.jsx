@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import { transformDate } from "../../utils/helper/helperMethod";
+import { transformDate, transformDateDashboard } from "../../utils/helper/helperMethod";
 import FavoriteCourse from "../../components/organism/FavoriteCourse/FavoriteCourse.organism";
 import HeaderDashboard from "../../components/organism/HeaderDashboard/HeaderDashboard.organism";
 import OrdersTable from "../../components/organism/RecentOrders/OrdersTable.organism";
@@ -24,7 +24,7 @@ function DashboardView() {
     return {
       ...value,
       paid: value?.cancel ? value?.cancel : value?.paid,
-      date: transformDate(value?.createdAt),
+      date: transformDateDashboard(value?.createdAt),
     };
   });
   return (

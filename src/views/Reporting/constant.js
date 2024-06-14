@@ -2,15 +2,15 @@ export const getThumbnailCourseContent = (state, userName) => {
   return [
     {
       title: "Name",
-      content: userName,
+      content: state.user.name,
     },
     {
       title: "Email",
       content: state.user.email,
     },
     {
-      title: "Phone",
-      content: state.user.phone,
+      title: "NIM",
+      content: state.user.nim ?? '-',
     },
   ];
 };

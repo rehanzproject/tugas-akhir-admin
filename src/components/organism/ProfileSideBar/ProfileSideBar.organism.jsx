@@ -20,14 +20,11 @@ function ProfileSideBar() {
         <div className="flex flex-col items-start my-4">
           <h1 className="font-bold text-sm py-1">Contact Information</h1>
           <EmailDash text={data?.data?.email} />
-          <PhoneDash phone={data?.data?.phone} />
           <DateOfBirthDash birthDate={date} />
-          <NIPDash gender={data?.data?.nip} />
-          <WebsiteDash website={"www.asia.co.id"} />
+          <NIPDash nip={data?.data?.nip} />
+          <WebsiteDash website={"www.asia.ac.id"} />
         </div>
-        <div className="border-t border-black">
-          <Earning balance={data?.data?.balance} />
-        </div>
+       
       </div>
     </div>
   );

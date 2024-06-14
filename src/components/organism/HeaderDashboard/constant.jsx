@@ -7,7 +7,7 @@ function DatasHeader({ dataStats }) {
   const headerDashboardData = [
     {
       title: "New Student",
-      num: dataStats?.data?.new_student,
+      num: dataStats?.data?.student,
       icon: <NewStudentIconDash />,
     },
     {

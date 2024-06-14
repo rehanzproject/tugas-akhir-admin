@@ -1,6 +1,7 @@
 import {
   makeRupiahValue,
   transformDate,
+  transformDateDashboard,
 } from "../../../utils/helper/helperMethod";
 import Badge from "../../atoms/Badge";
 
@@ -15,7 +16,7 @@ export const LIST_COLUMN_ORDERS = [
   {
     Header: "Date",
     accessor: "date",
-    Cell: ({ row: { original } }) => <section>{original.date}</section>,
+    Cell: ({ row: { original } }) => <section>{original?.date}</section>,
   },
   {
     Header: "Course",

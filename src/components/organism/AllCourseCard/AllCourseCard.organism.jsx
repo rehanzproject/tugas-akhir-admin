@@ -5,7 +5,7 @@ import CourseCard from "../CourseCard";
 
 function AllCourseCard({ data }) {
   const randomColorBorder = getRandomBorderColor();
-  const { course_id, name, categories, finished, member_count } = data;
+  const { course_id, name, categories, user_count,finished, member_count } = data;
   return (
     <div className={`p-5 rounded-xl border-l-4 ${randomColorBorder} shadow-lg`}>
       <div className="flex justify-between">
@@ -18,7 +18,7 @@ function AllCourseCard({ data }) {
       </div>
       <div className="gap-5 flex items-start justify-start border-r">
         <div className="mx-1 text-center">
-          <p>{finished}</p>
+          <p>{user_count}</p>
           <p>Attendees</p>
         </div>
         <div className="px-10 mx-6 text-center border-l border-black">

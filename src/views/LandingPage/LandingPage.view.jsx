@@ -14,7 +14,7 @@ function LandingPage() {
       <Navbar />
       <div className="bg-[url('./assets/bgLanding.png')] bg-cover h-screen flex flex-col justify-center items-center">
         <div className="relative flex items-center justify-center mr-10 mb-24">
-          <img src={GuruSvg} alt="Guru" className="w-2/5 mr-10 mt-20 " />
+          <img src={GuruSvg} alt="Guru" className=" mr-10 mt-20 " width={500} height={500} />
           <div className="mr-10">
             <div className="mb-10">
               <p className="text-5xl text-white font-bold">
@@ -26,11 +26,7 @@ function LandingPage() {
                 Kelola pembelajaran dengan mudah dan efisien. Semua yang Anda
                 butuhkan untuk mengelola LMS Anda, tersedia di sini.
               </p>
-              <img
-                src={LogoSvg}
-                alt="Logo"
-                className="opacity-90 absolute top-0 mt-10 -ml-120"
-              />
+            
             </div>
             <Link
               to="/login"

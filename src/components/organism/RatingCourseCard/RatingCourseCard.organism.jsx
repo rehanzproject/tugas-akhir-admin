@@ -21,7 +21,7 @@ function RatingCourseCard({ list }) {
         </div>
       </div>
       <p className="text-gray-400 text-xs pb-6 px-2 border-black border-b">
-        “{list.comment}”
+        “{list.description}”
       </p>
     </div>
   );

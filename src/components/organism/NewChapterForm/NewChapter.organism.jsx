@@ -11,6 +11,8 @@ import { handleUpdateOrCreateChapter } from "../../../utils/helper/updateOrCreat
 import { toast } from "react-toastify";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
 import useHTTP from "../../../utils/hooks/useHTTP";
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css';
 
 const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
   const { postRequest, updateRequest } = useHTTP();
@@ -36,9 +38,11 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
       }
     },
   });
+
   const handleRefresh = () => {
     formik.resetForm();
   };
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setFile(file);
@@ -86,6 +90,7 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
           });
       });
   };
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="mb-8 flex items-center">
@@ -127,15 +132,14 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
               <span className="text-red-500 font-semibold">*</span>
             </div>
           </label>
-          <textarea
+          <ReactQuill
             id="description"
             name="description"
-            className="resize-y w-[701px] h-[390px] mt-3 bg-gray-200 p-5 rounded-lg border border-gray-500"
-            placeholder="Type here..."
-            rows="5"
             value={formik.values.description}
-            onChange={formik.handleChange}
-          ></textarea>
+            onChange={(value) => formik.setFieldValue("description", value)}
+            className="w-[701px] h-[390px] mt-3 bg-gray-200 p-5 rounded-lg border border-gray-500"
+            placeholder="Type here..."
+          />
         </div>
         <div className="w-80 mr-8">
           <div className="mb-2 flex items-center">

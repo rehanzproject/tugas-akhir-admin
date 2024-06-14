@@ -6,12 +6,11 @@ import useHTTP from "../../utils/hooks/useHTTP";
 
 function ReportingUserView() {
   const { getRequest } = useHTTP();
+  const { course_name } = useParams();
   const { data, isLoading } = useSWR(
-    "/api/v1/admin/who/enrolled/course",
+    `/api/v1/admin/who/enrolled/course?name=${course_name}`,
     getRequest
   );
-
-  const { course_name } = useParams();
   const { state } = useLocation();
   return (
     <div>
@@ -23,13 +22,13 @@ function ReportingUserView() {
       {isLoading ? (
         <p>Loading users...</p>
       ) : (
-        data?.data?.user?.map((user) => (
+        data?.data?.map((user) => (
           <Link
-            key={user.username}
-            to={`/reporting/${course_name}/${user.name}`}
-            state={{ user, ...state }}
+            key={user.user.user_id}
+            to={`/reporting/${course_name}/${user.user.name}`}
+            state={{ ...user, ...state }}
           >
-            <UserListCourseCard {...user} />
+            <UserListCourseCard {...user.user} />
           </Link>
         ))
       )}

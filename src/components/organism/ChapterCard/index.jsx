@@ -8,7 +8,8 @@ import Modal from "../../molecules/Modal/Modal.molecul";
 import useHTTP from "../../../utils/hooks/useHTTP";
 
 function ChapterCard({
-  id,
+  
+  module_id,
   name,
   description,
   video,
@@ -24,7 +25,7 @@ function ChapterCard({
   const handleDelete = async () => {
     toast.loading(`Deleting ${name} module...`);
     try {
-      await deleteRequest(`/api/v1/admin/module?id=${id}`);
+      await deleteRequest(`/api/v1/admin/module?id=${module_id}`);
       toast.dismiss();
       toast.info(`Succesfully deleted ${name} module!`, { autoClose: 1500 });
     } catch (error) {
@@ -40,7 +41,7 @@ function ChapterCard({
     }
 
     if (value === "Quiz") {
-      navigate(`/course/${courseId}/chapter/${id}/quiz`);
+      navigate(`/course/${courseId}/chapter/${module_id}/quiz`);
     }
 
     if (value === "Update") {
@@ -49,7 +50,7 @@ function ChapterCard({
           createNewChapter: false,
           data: {
             id_course: courseId,
-            id,
+            module_id,
             name,
             description,
             video,
@@ -58,7 +59,6 @@ function ChapterCard({
       });
     }
   };
-
   return (
     <section className="flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl">
       <section

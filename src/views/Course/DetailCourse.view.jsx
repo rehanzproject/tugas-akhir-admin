@@ -12,7 +12,7 @@ function DetailCourseView() {
   const navigate = useNavigate();
   const { data, isLoading } = useSWR(
     `/api/v1/admin/course/detail?id=${id_course}`,
-    getRequest,
+    getRequest
   );
   const handleAddChapter = useCallback(() => {
     navigate(`/course/${id_course}/new-chapter`, {

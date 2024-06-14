@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import sessionSlice from "../redux/session/sessionSlice/sessionSlice.jsx";
+import sessionSlice from "../redux/session/sessionSlice/sessionSlice";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import DashboardTemplate from "../../components/templates/Dashboard.template";

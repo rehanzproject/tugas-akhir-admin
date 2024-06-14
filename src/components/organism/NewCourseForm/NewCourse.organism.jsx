@@ -8,7 +8,6 @@ import {
 } from "./constant.js";
 import CameraIcon from "../../atoms/Icons/CameraIcon.atom.jsx";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom.jsx";
-import ArrowIcon from "../../atoms/Icons/ArrowIcon.atom.jsx";
 import useHTTP from "../../../utils/hooks/useHTTP.jsx";
 import { useNavigate } from "react-router-dom";
 import { handleUpdateOrCreateCourse } from "../../../utils/helper/updateOrCreateMethod.js";
@@ -133,8 +132,8 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           </div>
         </div>
       </div>
-      <div className="mr-10 flex flex-row items-center">
-        <div className="w-full flex flex-col gap-2">
+      <div className="mr-10 flex flex-row items-center gap-4"> {/* Adjusted this div */}
+        <div className="flex-1">
           <label htmlFor="price">
             <div className="flex items-center">
               <p className="font-semibold">Course Price</p>
@@ -147,11 +146,11 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
             value={formik.values.price}
             onChange={formik.handleChange}
             name="price"
-            className="w-80 h-12 mt-1 bg-gray-200 p-5 rounded-lg border border-gray-500"
+            className="w-full h-12 mt-1 bg-gray-200 p-5 rounded-lg border border-gray-500"
             placeholder="00000"
           />
         </div>
-        <div className="w-full flex flex-col p-2 ml-4">
+        <div className="flex-1">
           <label htmlFor="level">
             <div className="flex items-center">
               <p className="font-semibold">Coupon</p>
@@ -164,12 +163,10 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
             value={formik.values.coupon}
             onChange={formik.handleChange}
             name="coupon"
-            className="w-80 h-12 mt-1 bg-gray-200 p-5 rounded-lg border border-gray-500"
+            className="w-full h-12 mt-1 bg-gray-200 p-5 rounded-lg border border-gray-500"
             placeholder="eg: LETSROCK"
           />
-         
         </div>
-        
       </div>
       <div className="flex font-semibold mt-6">
         <button

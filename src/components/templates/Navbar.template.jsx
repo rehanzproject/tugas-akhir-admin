@@ -3,13 +3,13 @@
 import React from "react";
 import "../../index.css";
 import { Link } from "react-router-dom";
-import homeImage from "../../assets/Home.svg";
+import homeImage from "../../assets/logo.png";
 
 function Navbar() {
   return (
-    <nav className="flex z-10 items-center justify-between bg-white fixed w-full p-2 px-10">
+    <nav className="flex z-10 items-center justify-between bg-white fixed w-full px-10">
       <Link to="/">
-        <img src={homeImage} alt="logo" width={300} />
+        <img src={homeImage} alt="logo" width={200} height={200}  />
       </Link>
       <p>ID</p>
     </nav>

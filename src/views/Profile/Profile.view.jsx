@@ -14,11 +14,11 @@ function ContentProfile() {
     getRequest
   );
   const { data: profile, isLoading: profileLoading } = useSWR(
-    "/api/v1/user/info",
+    "/api/v1/admin/info",
     getRequest
   );
   const { data: comment, isLoading: commentLoading } = useSWR(
-    "/api/v1/public/course/reviews?size=6&page=1",
+    "/api/v1/admin/course/reviews?size=6&page=1",
     getRequest
   );
   return (

@@ -10,14 +10,14 @@ function FavoriteCourse({ dataCourses }) {
 
       {slicedData?.map((item) => (
         <section
-          key={item.id}
+          key={item.course_id}
           className="bg-white p-4 rounded-2xl border-2 border-secondary-10"
         >
           <article className="flex justify-between gap-2">
-            <h2 className="font-bold text-lg">{item.name}</h2>
+            <h2 className="font-bold text-base">{item.name}</h2>
             <section className="rating rating-sm flex items-center">
               <RatingStars />
-              <p className="ps-2 text-sm">{item.rating ?? 0.0}</p>
+              <p className="text-sm">{item.rating ?? 0.0}</p>
             </section>
           </article>
 

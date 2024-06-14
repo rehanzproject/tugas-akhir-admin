@@ -4,8 +4,14 @@ import ReactPlayer from "react-player";
 
 function DetailChapter() {
   const { state } = useLocation();
+
   const data = state?.data || {};
-console.log(data);
+  console.log(data);
+
+  const renderDescription = (description) => {
+    return { __html: description };
+  };
+
   return (
     <section className="flex flex-col gap-5 me-8">
       <h2 className="text-xl">My Chapter</h2>
@@ -16,7 +22,7 @@ console.log(data);
 
       <section className="flex flex-col gap-2">
         <h1 className="font-semibold text-xl">Deskripsi</h1>
-        <p className="ml-4">{data?.description}</p>
+        <div className="ml-4" dangerouslySetInnerHTML={data?.description ? renderDescription(data.description) : { __html: '' }} />
       </section>
 
       <section className="flex flex-col gap-2">

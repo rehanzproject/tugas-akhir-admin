@@ -32,19 +32,18 @@ function Quiz() {
     getRequest,
     { refreshInterval: 2000 }
   );
-
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        if (existingData?.data) {
-          setInitialValues(formatData(existingData?.data));
+        if (existingData?.data?.data) {
+          setInitialValues(formatData(existingData?.data?.data));
         }
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [existingData?.data]);
+  }, [existingData?.data?.data]);
 
   const handleSubmit = async (values, { resetForm }) => {
     const data = {

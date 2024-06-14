@@ -5,13 +5,13 @@ import ProductSoldDash from "../../molecules/ProductSold/ProductSoldDash.molecul
 import StudentProfileDash from "../../molecules/StudentProfileDash/StudentProfileDash.molecul";
 import { convertToJuta } from "../../../utils/helper/helperMethod";
 
-function HeaderProfile({ income, orders, student }) {
+function HeaderProfile({ income, verifiedCheckouts, student }) {
   return (
     <div className="grid grid-cols-4">
-      <OrderDash newOrder={orders} />
+      <OrderDash newOrder={verifiedCheckouts} />
       <IncomeDash newIncome={convertToJuta(income)} />
       <StudentProfileDash newStudent={student} />
-      <ProductSoldDash newProductSold={orders} />
+      <ProductSoldDash newProductSold={verifiedCheckouts} />
     </div>
   );
 }

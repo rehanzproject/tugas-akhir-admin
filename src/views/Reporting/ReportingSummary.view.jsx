@@ -11,24 +11,20 @@ function ReportingSummary() {
   const { detail_user } = useParams();
   const { state } = useLocation();
   const { data: rawData, isLoading } = useSWR(
-    `/api/v1/admin/course/resumes?id=${detail_user}`,
+    `/api/v1/admin/course/resume?name=${detail_user}&id=${state.course_id}`,
     getRequest
   );
   let finalData;
-
   const thumbnailCourseContent = useMemo(
     () => getThumbnailCourseContent(state, rawData),
     []
   );
-
   if (!isLoading) {
-    finalData = rawData?.data?.find(
-      (item) =>
-        item.user.email === state.user.email &&
-        item.report.course.id === state.course_id
-    );
+    finalData = rawData?.data?.getModules?.find((item) => {
+      item?.user?.email === state?.user?.email &&
+        item?.report?.course.id === state?.course_id;
+    });
   }
-
   return (
     <section className="flex flex-col gap-5 me-8 min-h-screen">
       <p className="text-3xl">{detail_user}</p>
@@ -83,16 +79,18 @@ function ReportingSummary() {
 
               <section className="h-96 overflow-y-auto mb-4">
                 <section className="flex flex-col gap-3 px-2 py-3">
-                  {finalData?.completion_module?.length
-                    ? finalData.completion_module.map(({ module, score }) => (
-                        <ChapterCard
-                          score={score}
-                          key={module.id}
-                          name={module.name}
-                          isReporting
-                        />
-                      ))
-                    : state.course_modules.map((item) => (
+                  {rawData?.data?.length
+                    ? rawData?.data?.map(
+                        ({ module, score }) => (
+                          <ChapterCard
+                            score={score}
+                            key={module?.id}
+                            name={module.name}
+                            isReporting
+                          />
+                        )
+                      )
+                    : rawData?.data?.map((item) => (
                         <ChapterCard key={item.id} {...item} isReporting />
                       ))}
                 </section>

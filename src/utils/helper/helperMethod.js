@@ -12,6 +12,12 @@ export const transformDate = (date) =>
     year: "numeric",
   }).format(new Date(date));
 
+export const transformDateDashboard = (date) => {
+  const dateObj = new Date(date);
+  const options = { month: "short", day: "2-digit", year: "numeric" };
+  const formattedDate = dateObj.toLocaleDateString("en-US", options);
+  return formattedDate;
+};
 export const getRandomBorderColor = () => {
   const colors = [
     "border-warning-50",

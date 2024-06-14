@@ -1,6 +1,6 @@
 export const formatData = (data) => {
   const formattedData = {
-    quizzes: data.map((item) => ({
+    quizzes: data?.quizzes?.map((item) => ({
       question: item.question,
       text1: item.choices[0].text,
       text2: item.choices[1].text,
