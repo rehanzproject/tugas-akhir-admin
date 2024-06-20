@@ -14,16 +14,28 @@ function ReportingSummary() {
     `/api/v1/admin/course/resume?name=${detail_user}&id=${state.course_id}`,
     getRequest
   );
-  let finalData;
+
   const thumbnailCourseContent = useMemo(
     () => getThumbnailCourseContent(state, rawData),
-    []
+    [state, rawData]
   );
-  if (!isLoading) {
-    finalData = rawData?.data?.getModules?.find((item) => {
-      item?.user?.email === state?.user?.email &&
-        item?.report?.course.id === state?.course_id;
-    });
+
+  // Calculate the average score
+  const averageScore = useMemo(() => {
+    if (!rawData?.data) return 0;
+
+    const scores = rawData.data.map(item => item.score);
+    const totalScore = scores.reduce((acc, score) => acc + score, 0);
+    return scores.length ? (totalScore / scores.length) : 0;
+  }, [rawData]);
+
+  let finalData;
+  if (!isLoading && rawData) {
+    finalData = rawData?.data?.find(
+      item =>
+        item.user.email === state.user.email &&
+        item.report.course.id === state.course_id
+    );
   }
   return (
     <section className="flex flex-col gap-5 me-8 min-h-screen">
@@ -47,12 +59,10 @@ function ReportingSummary() {
                   <h3>Nilai Akhir</h3>
                   <p
                     className={`border-2 border-secondary-10 rounded-md p-2 py-1 ${
-                      finalData?.report?.score
-                        ? "text-success-30"
-                        : "text-danger-30"
+                      averageScore ? "text-success-30" : "text-danger-30"
                     }`}
                   >
-                    {finalData?.report?.score ?? 0}
+                    {averageScore ?? 0}
                   </p>
                 </section>
 
@@ -79,20 +89,15 @@ function ReportingSummary() {
 
               <section className="h-96 overflow-y-auto mb-4">
                 <section className="flex flex-col gap-3 px-2 py-3">
-                  {rawData?.data?.length
-                    ? rawData?.data?.map(
-                        ({ module, score }) => (
-                          <ChapterCard
-                            score={score}
-                            key={module?.id}
-                            name={module.name}
-                            isReporting
-                          />
-                        )
-                      )
-                    : rawData?.data?.map((item) => (
-                        <ChapterCard key={item.id} {...item} isReporting />
-                      ))}
+                  {rawData?.data?.length > 0 &&
+                    rawData.data.map(({ module, score }) => (
+                      <ChapterCard
+                        score={score}
+                        key={module.module_id}
+                        name={module.name}
+                        isReporting
+                      />
+                    ))}
                 </section>
               </section>
             </section>
