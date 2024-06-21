@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import sessionSlice from "../redux/Session/sessionSlice/sessionSlice.jsx";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import DashboardTemplate from "../../components/templates/Dashboard.template";
@@ -18,6 +17,7 @@ import ReportingUserView from "../../views/Reporting/ReportingUser.view";
 import DetailChapter from "../../views/Chapter/DetailChapter.view";
 import NewChapterView from "../../views/Chapter/NewChapter.view";
 import Cookies from "js-cookie";
+import sessionSlice from "../redux/session/sessionSlice/sessionSlice";
 function RootRouter() {
   const token = Cookies.get("token");
   const tokenState = useSelector((state) => state.session.token);
