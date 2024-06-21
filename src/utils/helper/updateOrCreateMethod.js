@@ -1,7 +1,6 @@
 export const handleUpdateOrCreateChapter = async ({
   createNewChapter,
   values,
-  id_course,
   id,
   data,
   link_url,
@@ -15,7 +14,7 @@ export const handleUpdateOrCreateChapter = async ({
     });
   }
 
-  await updateRequest(`/api/v1/admin/module/update?id=${data.id_course}`, {
+  await updateRequest(`/api/v1/admin/module/update?id=${data.module_id}`, {
     ...values,
     video: link_url,
   });

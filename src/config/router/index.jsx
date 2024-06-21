@@ -27,7 +27,6 @@ function RootRouter() {
   useEffect(() => {
     dispatch(sessionSlice.actions.updateToken(token));
   }, []);
-
   return (
     <BrowserRouter>
       <Routes>

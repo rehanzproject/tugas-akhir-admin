@@ -30,7 +30,6 @@ function Quiz() {
   const { data: existingData } = useSWR(
     `/api/v1/admin/module/quiz?id=${id_chapter}`,
     getRequest,
-    { refreshInterval: 2000 }
   );
   React.useEffect(() => {
     const fetchData = async () => {

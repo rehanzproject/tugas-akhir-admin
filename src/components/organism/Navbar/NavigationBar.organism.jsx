@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import sessionSlice from "../../../config/redux/session/sessionSlice/sessionSlice";
 import useHTTP from "../../../utils/hooks/useHTTP";
 import useSWR from "swr";
-
+import pict from "../../../assets/picture.avif";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -33,14 +33,11 @@ function NavigationBar() {
           <Menu.Button className="flex -mb-1 gap-3 rounded-full text-sm focus:ring-white focus:ring-offset-2">
             <img
               className="h-8 w-8 rounded-full"
-              src={`${
-                profile?.image ??
-                "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              }`}
+              src={`${profile?.image ??  pict }`}
               alt="avatar"
             />
             <h2 className="py-1 text-xl font-medium">
-              {profile ? profile?.data?.name : "adminmin"}
+              {profile ? profile?.data?.name : "admin"}
             </h2>
           </Menu.Button>
 

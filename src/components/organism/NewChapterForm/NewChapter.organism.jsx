@@ -15,6 +15,7 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
 const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
+console.log(data);
   const { postRequest, updateRequest } = useHTTP();
   const navigate = useNavigate();
   const initData = useMemo(

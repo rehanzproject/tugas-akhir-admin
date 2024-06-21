@@ -8,7 +8,6 @@ import Modal from "../../molecules/Modal/Modal.molecul";
 import useHTTP from "../../../utils/hooks/useHTTP";
 
 function ChapterCard({
-  
   module_id,
   name,
   description,

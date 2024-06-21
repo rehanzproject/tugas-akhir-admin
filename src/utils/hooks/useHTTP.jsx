@@ -1,6 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const useHTTP = () => {
   const token =
@@ -19,6 +22,29 @@ const useHTTP = () => {
     },
   };
 
+  const handleError = (error) => {
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+          toast.error("Unauthorized access. Please login again.");
+          break;
+        case 404:
+          toast.error("Resource not found.");
+          break;
+        case 500:
+          toast.error("Internal server error. Please try again later.");
+          break;
+        default:
+          toast.error(`An error occurred: ${error.response.statusText}`);
+          break;
+      }
+    } else if (error.request) {
+      toast.error("No response received from the server.");
+    } else {
+      toast.error(`Request error: ${error.message}`);
+    }
+  };
+
   const getRequest = async (url) => {
     try {
       const res = await axios.get(
@@ -27,7 +53,7 @@ const useHTTP = () => {
       );
       return res.data;
     } catch (error) {
-      console.error(error);
+      handleError(error);
     }
   };
 
@@ -38,9 +64,9 @@ const useHTTP = () => {
         value
       );
       Cookies.set("token", result.data.data);
-      return result.data.data
+      return result.data.data;
     } catch (error) {
-      console.error(error);
+      handleError(error);
     }
   };
 
@@ -53,20 +79,20 @@ const useHTTP = () => {
       );
       return res.data;
     } catch (error) {
-      console.error(error);
+      handleError(error);
     }
   };
 
-  const updateRequest = (url, value) => {
+  const updateRequest = async (url, value) => {
     try {
-      const res = axios.put(
+      const res = await axios.put(
         `${import.meta.env.VITE_BASE_URL}${url}`,
         value,
         config
       );
       return res.data;
     } catch (error) {
-      console.error(error);
+      handleError(error);
     }
   };
 
@@ -78,7 +104,7 @@ const useHTTP = () => {
       );
       return res.data;
     } catch (error) {
-      console.error(error);
+      handleError(error);
     }
   };
 
@@ -93,7 +119,7 @@ const useHTTP = () => {
       );
       return res.data;
     } catch (error) {
-      console.error(error);
+      handleError(error);
     }
   };
 
