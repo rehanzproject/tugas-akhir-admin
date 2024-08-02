@@ -19,6 +19,8 @@
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "daisyui": "^2.51.6",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
     "firebase": "^9.22.2",
     "formik": "^2.2.9",
     "js-cookie": "^3.0.5",
@@ -36,6 +38,7 @@
     "remixicon": "^3.3.0",
     "reselect": "^5.1.1",
     "swr": "^2.1.5",
+    "xlsx": "^0.18.5",
     "yup": "^1.1.1"
   },
   "devDependencies": {

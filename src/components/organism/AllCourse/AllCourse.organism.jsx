@@ -17,8 +17,8 @@ function AllCourse({ data }) {
       </div>
       {data?.length ? (
         <div className="grid grid-cols-2 gap-7 h-[28rem] mt-8 pr-12 bottom-0 pb-10 mr-8 justify-center overflow-y-auto">
-          {data?.map((list) => (
-            <AllCourseCard key={list.id} data={list} />
+          {data?.map((list, index) => (
+            <AllCourseCard key={index} data={list} />
           ))}
         </div>
       ) : (

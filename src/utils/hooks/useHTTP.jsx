@@ -28,14 +28,11 @@ const useHTTP = () => {
         case 401:
           toast.error("Unauthorized access. Please login again.");
           break;
-        case 404:
-          toast.error("Resource not found.");
-          break;
         case 500:
           toast.error("Internal server error. Please try again later.");
           break;
         default:
-          toast.error(`An error occurred: ${error.response.statusText}`);
+          // toast.error(`An error occurred: ${error.response.statusText}`);
           break;
       }
     } else if (error.request) {

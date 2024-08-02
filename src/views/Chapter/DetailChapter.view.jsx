@@ -6,7 +6,6 @@ function DetailChapter() {
   const { state } = useLocation();
 
   const data = state?.data || {};
-  console.log(data);
 
   const renderDescription = (description) => {
     return { __html: description };

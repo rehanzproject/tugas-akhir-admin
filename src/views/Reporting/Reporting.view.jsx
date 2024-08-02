@@ -19,13 +19,7 @@ function ReportingView() {
       ) : (
         <section className="mr-4 my-4 h-[32rem] overflow-y-auto">
           {course?.data?.map((list) => (
-            <Link
-              key={list.id}
-              to={`/reporting/${list.name}`}
-              state={{ course_modules: list.modules, course_id: list.course_id }}
-            >
-              <UserListCard {...list} />
-            </Link>
+            <UserListCard {...list} />
           ))}
         </section>
       )}

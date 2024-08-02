@@ -29,7 +29,7 @@ function Quiz() {
 
   const { data: existingData } = useSWR(
     `/api/v1/admin/module/quiz?id=${id_chapter}`,
-    getRequest,
+    getRequest
   );
   React.useEffect(() => {
     const fetchData = async () => {
@@ -60,7 +60,7 @@ function Quiz() {
       if (existingData) {
         const response = await updateRequest(
           `/api/v1/admin/module/quiz?id=${id_chapter}`,
-          JSON.stringify(data)
+          data
         );
         toast.success("Edit quiz success", { autoClose: 1000 });
       }

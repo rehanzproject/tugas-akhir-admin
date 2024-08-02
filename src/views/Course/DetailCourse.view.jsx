@@ -52,11 +52,11 @@ function DetailCourseView() {
             <section className="h-96 overflow-y-auto mb-4">
               <section className="flex flex-col gap-3 px-2 py-3">
                 {data?.data?.modules?.length ? (
-                  data.data.modules.map((item) => {
+                  data.data.modules.map((item , index) => {
                     return (
                       <ChapterCard
                         {...item}
-                        key={item.id}
+                        key={index}
                         courseId={id_course}
                         onClick={() => handleChapterClick(item)}
                       />

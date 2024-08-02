@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { useFormik } from "formik";
 import { storage } from "../../../config/firebase/firebase";
 import { getDownloadURL } from "firebase/storage";
@@ -15,14 +15,14 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
 const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
-console.log(data);
   const { postRequest, updateRequest } = useHTTP();
   const navigate = useNavigate();
   const initData = useMemo(
     () => (createNewChapter ? initCreateNewChapterValue : data),
-    []
+    [createNewChapter, data]
   );
   const [file, setFile] = useState("");
+
   const formik = useFormik({
     initialValues: initData,
     validationSchema: validationCreateNewChapter,
@@ -49,48 +49,39 @@ console.log(data);
     setFile(file);
   };
 
-  const handleUpload = (values) => {
-    storage
-      .ref("/videos/" + file.name)
-      .put(file)
-      .then((snapshot) => {
-        getDownloadURL(snapshot.ref)
-          .then(async (downloadURL) => {
-            try {
-              if (file) {
-                const link_url = await downloadURL;
-                await handleUpdateOrCreateChapter({
-                  createNewChapter,
-                  values,
-                  id,
-                  data,
-                  link_url,
-                  postRequest,
-                  updateRequest,
-                });
-              } else {
-                await handleUpdateOrCreateChapter({
-                  createNewChapter,
-                  values,
-                  id,
-                  data,
-                  link_url: undefined,
-                  postRequest,
-                  updateRequest,
-                });
-              }
+  const handleUpload = useCallback(async (values) => {
+    try {
+      if (file) {
+        const snapshot = await storage.ref("/videos/" + file.name).put(file);
+        const downloadURL = await getDownloadURL(snapshot.ref);
 
-              navigate(`/course/${data.id_course || id}`);
-              formik.resetForm();
-            } catch (error) {
-              console.log(error);
-            }
-          })
-          .catch((error) => {
-            console.error("Error while getting download URL:", error);
-          });
-      });
-  };
+        await handleUpdateOrCreateChapter({
+          createNewChapter,
+          values,
+          id,
+          data,
+          link_url: downloadURL,
+          postRequest,
+          updateRequest,
+        });
+      } else {
+        await handleUpdateOrCreateChapter({
+          createNewChapter,
+          values,
+          id,
+          data,
+          link_url: undefined,
+          postRequest,
+          updateRequest,
+        });
+      }
+
+      navigate(`/course/${data.id_course || id}`);
+      formik.resetForm();
+    } catch (error) {
+      console.error("Error during file upload or chapter update:", error);
+    }
+  }, [file, createNewChapter, id, data, postRequest, updateRequest, navigate, formik]);
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -181,7 +172,6 @@ console.log(data);
           Back
         </button>
         <button
-          onClick={handleUpload}
           type="submit"
           className="justify-end ml-auto mr-8 bg-warning-10 hover:bg-warning-30 text-black py-2 px-6 rounded-lg text-sm"
         >

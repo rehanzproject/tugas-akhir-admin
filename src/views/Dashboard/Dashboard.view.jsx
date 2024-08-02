@@ -4,9 +4,9 @@ import {
   transformDate,
   transformDateDashboard,
 } from "../../utils/helper/helperMethod";
-// import FavoriteCourse from "../../components/organism/FavoriteCourse/FavoriteCourse.organism";
-// import HeaderDashboard from "../../components/organism/HeaderDashboard/HeaderDashboard.organism";
-// import OrdersTable from "";
+import FavoriteCourse from "../../components/organism/FavoriteCourse/FavoriteCourse.organism";
+import HeaderDashboard from "../../components/organism/HeaderDashboard/HeaderDashboard.organism";
+import OrdersTable from '../../components/organism/RecentOrders/OrdersTable.organism';
 import useHTTP from "../../utils/hooks/useHTTP";
 
 function DashboardView() {
@@ -29,31 +29,16 @@ function DashboardView() {
       paid: value?.cancel ? value?.cancel : value?.paid,
       date: transformDateDashboard(value?.createdAt),
     };
-  });
-  const HeaderDashboard = lazy(() =>
-    import("../../components/organism/HeaderDashboard/HeaderDashboard.organism")
-  );
-  const OrdersTable = lazy(() =>
-    import("../../components/organism/RecentOrders/OrdersTable.organism")
-  );
-  const FavoriteCourse = lazy(() =>
-    import("../../components/organism/FavoriteCourse/FavoriteCourse.organism")
-  );
-  const renderLoader = () => <p>Loading</p>;
+  }) || [];
+
   return (
     <section className="flex flex-col gap-6 me-8">
-      <Suspense fallback={renderLoader()}>
-        <HeaderDashboard dataStats={dataStats} />
-      </Suspense>
+      <HeaderDashboard dataStats={dataStats} />
 
       <section className="flex gap-10 ">
-      <Suspense fallback={renderLoader()}>
         <OrdersTable newData={orderData} />
-      </Suspense>
 
-      <Suspense fallback={renderLoader()}>
         <FavoriteCourse dataCourses={dataCourses} />
-      </Suspense>
       </section>
     </section>
   );

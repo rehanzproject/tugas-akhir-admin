@@ -36,7 +36,15 @@ function CourseCard({
     if (value === "Delete") {
       setIsOpen(true);
       return;
+    } else if (value === "Pengingat") {
+      navigate(`/course/reminder/${name}`, {
+        state: {
+          course_id,
+        },
+      });
+      return;
     }
+
     navigate(`/course/new-course`, {
       state: {
         createNewCourse: false,

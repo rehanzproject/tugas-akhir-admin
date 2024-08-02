@@ -18,6 +18,7 @@ import DetailChapter from "../../views/Chapter/DetailChapter.view";
 import NewChapterView from "../../views/Chapter/NewChapter.view";
 import Cookies from "js-cookie";
 import sessionSlice from "../redux/session/sessionSlice/sessionSlice";
+import CourseReminder from "../../views/Course/CourseReminder.view";
 function RootRouter() {
   const token = Cookies.get("token");
   const tokenState = useSelector((state) => state.session.token);
@@ -31,46 +32,44 @@ function RootRouter() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        {isAuthenticated ? (
-          <Route element={<DashboardTemplate />}>
-            <Route path="/dashboard" element={<DashboardView />} />
-            <Route path="/course" element={<CourseView />} />
-            <Route path="/course/new-course" element={<NewCourseView />} />
-            <Route
-              path="/course/:id_course/new-chapter"
-              element={<NewChapterView />}
-            />
-            <Route
-              path="/course/:id_course/chapter/:id_chapter/quiz"
-              element={<Quiz />}
-            />
-            <Route
-              path="/course/:id_course/chapter/:id_chapter"
-              element={<DetailChapter />}
-            />
-            <Route path="/course/:id_course" element={<DetailCourseView />} />
-            <Route path="/reporting" element={<ReportingView />} />
-            <Route
-              path="/reporting/:course_name"
-              element={<ReportingUserView />}
-            />
-            <Route
-              path="/reporting/:course_name/:detail_user"
-              element={<ReportingSummary />}
-            />
-            <Route path="/profile" element={<ProfileView />} />
-            <Route path="/profile/mycourse" element={<ProfileMyCourse />} />
-            <Route
-              path="*"
-              element={<Navigate to="/dashboard" replace={true} />}
-            />
-          </Route>
-        ) : (
-          <>
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<Navigate to="/login" replace={true} />} />
-          </>
-        )}
+
+        <Route element={<DashboardTemplate />}>
+          <Route path="/dashboard" element={<DashboardView />} />
+          <Route path="/course" element={<CourseView />} />
+          <Route path="/course/reminder/:name_course" element={<CourseReminder />} />
+          <Route path="/course/new-course" element={<NewCourseView />} />
+          <Route
+            path="/course/:id_course/new-chapter"
+            element={<NewChapterView />}
+          />
+          <Route
+            path="/course/:id_course/chapter/:id_chapter/quiz"
+            element={<Quiz />}
+          />
+          <Route
+            path="/course/:id_course/chapter/:id_chapter"
+            element={<DetailChapter />}
+          />
+          <Route path="/course/:id_course" element={<DetailCourseView />} />
+          <Route path="/reporting" element={<ReportingView />} />
+          <Route
+            path="/reporting/:course_name"
+            element={<ReportingUserView />}
+          />
+          <Route
+            path="/reporting/:course_name/:detail_user"
+            element={<ReportingSummary />}
+          />
+          <Route path="/profile" element={<ProfileView />} />
+          <Route path="/profile/mycourse" element={<ProfileMyCourse />} />
+          <Route
+            path="*"
+            element={<Navigate to="/dashboard" replace={true} />}
+          />
+        </Route>
+
+        <Route path="/login" element={<Login />} />
+        {/* <Route path="*" element={<Navigate to="/login" replace={true} />} /> */}
       </Routes>
     </BrowserRouter>
   );

@@ -21,7 +21,9 @@ export const LIST_COLUMN_ORDERS = [
   {
     Header: "Course",
     accessor: "name",
-    Cell: ({ row: { original } }) => <section>{original?.course?.name}</section>,
+    Cell: ({ row: { original } }) => (
+      <section>{original?.course?.name}</section>
+    ),
   },
   {
     Header: "Payment",

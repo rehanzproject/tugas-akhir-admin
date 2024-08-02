@@ -1,0 +1,4 @@
+POST http://localhost:5000/api/v1/user/register
+Content-Type: application/json
+
+{"email":"jaenal@123456","name":"Jaenal ","nip":202032422,"password":"jaenal","confPassword":"jaenal", "admin":true}
