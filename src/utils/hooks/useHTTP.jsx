@@ -2,8 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 const useHTTP = () => {
   const token =
@@ -74,6 +73,7 @@ const useHTTP = () => {
         value,
         config
       );
+
       return res.data;
     } catch (error) {
       handleError(error);
